@@ -20,44 +20,6 @@ namespace RAXY.InputSystem
         [TableList]
         public List<InputActionEventBinding> InputActionBindings;
 
-#if UNITY_EDITOR
-        [TitleGroup("All Event SO")]
-        [ShowInInspector, ReadOnly]
-        private List<InputActionEventSO> _allInputActionEvents = new();
-
-        [HorizontalGroup("All Event SO/Op")]
-        [Button("Find All")]
-        private void FindAllInputActionEventSO()
-        {
-            _allInputActionEvents.Clear();
-
-            string[] guids = AssetDatabase.FindAssets("t:InputActionEventSO");
-            foreach (string guid in guids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                InputActionEventSO so = AssetDatabase.LoadAssetAtPath<InputActionEventSO>(path);
-                if (so != null)
-                    _allInputActionEvents.Add(so);
-            }
-
-            Debug.Log($"[InputActionManager] Found {_allInputActionEvents.Count} InputActionEventSO assets.");
-        }
-
-        [HorizontalGroup("All Event SO/Op")]
-        [Button("Clean Up")]
-        private void CleanUpAllInputActionEventSO()
-        {
-            FindAllInputActionEventSO();
-
-            foreach (var so in _allInputActionEvents)
-            {
-                so.ClearAllListeners();
-            }
-
-            Debug.Log($"[InputActionManager] Cleared listeners from {_allInputActionEvents.Count} InputActionEventSO assets.");
-        }
-#endif
-
         private void Awake()
         {
             Instance = this;
@@ -74,11 +36,6 @@ namespace RAXY.InputSystem
             {
                 inputEntry.Dispose();
             }
-
-#if UNITY_EDITOR
-            // Auto cleanup when exiting Play Mode (optional but handy)
-            CleanUpAllInputActionEventSO();
-#endif
         }
     }
 
