@@ -7,7 +7,7 @@ using RAXY.Event;
 namespace RAXY.InputSystem
 {
     [CreateAssetMenu(menuName = "RAXY/Input System/Input Action Event")]
-    public class InputActionEventSO : EventBaseSO<InputContext>
+    public class InputActionEventSO : EventSO<InputContext>
     {
         public void Raise(string actionName, bool value) => Raise(new InputContext(actionName, value));
         public void Raise(string actionName, Vector2 value) => Raise(new InputContext(actionName, value));

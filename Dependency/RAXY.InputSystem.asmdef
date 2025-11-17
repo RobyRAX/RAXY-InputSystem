@@ -3,7 +3,8 @@
     "rootNamespace": "RAXY.InputSystem",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:3f7267155bd17aa4ab523154bc057d7b"
+        "GUID:3f7267155bd17aa4ab523154bc057d7b",
+        "GUID:736f23a4f42e49d429767945c0c5b49e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

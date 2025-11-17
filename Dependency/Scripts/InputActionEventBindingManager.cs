@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
-
+using RAXY.Utility;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,29 +12,41 @@ using UnityEditor;
 
 namespace RAXY.InputSystem
 {
-    public class InputActionEventBinderManager : MonoBehaviour
+    public class InputActionEventBindingManager : Singleton<InputActionEventBindingManager>
     {
-        public static InputActionEventBinderManager Instance { get; private set; }
-
-        [TitleGroup("Input Action Setup")]
+        [TitleGroup("Bindings")]
         [TableList]
         public List<InputActionEventBinding> InputActionBindings;
 
-        private void Awake()
+        protected override void Awake()
         {
-            Instance = this;
-
-            foreach (var inputEntry in InputActionBindings)
-            {
-                inputEntry.Init();
-            }
+            base.Awake();
+            Bind();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            Unbind();
+        }
+
+        [HorizontalGroup]
+        [Button]
+        public void Bind()
         {
             foreach (var inputEntry in InputActionBindings)
             {
-                inputEntry.Dispose();
+                inputEntry.Bind();
+            }
+        }
+        
+        [HorizontalGroup]
+        [Button]
+        public void Unbind()
+        {
+            foreach (var inputEntry in InputActionBindings)
+            {
+                inputEntry.Unbind();
             }
         }
     }
@@ -46,7 +58,7 @@ namespace RAXY.InputSystem
         public InputActionReference unityInputAction;
         public InputActionEventSO actionEventSO;
 
-        public void Init()
+        public void Bind()
         {
             if (unityInputAction?.action == null || actionEventSO == null)
                 return;
@@ -54,6 +66,15 @@ namespace RAXY.InputSystem
             unityInputAction.action.performed += OnPerformed;
             unityInputAction.action.canceled += OnCanceled;
             unityInputAction.action.Enable();
+        }
+
+        public void Unbind()
+        {
+            if (unityInputAction?.action != null)
+            {
+                unityInputAction.action.performed -= OnPerformed;
+                unityInputAction.action.canceled -= OnCanceled;
+            }
         }
 
         private void OnPerformed(InputAction.CallbackContext ctx)
@@ -99,15 +120,6 @@ namespace RAXY.InputSystem
                     value = new Vector2(f, 0);
 
                 actionEventSO.Raise(actionName, value);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (unityInputAction?.action != null)
-            {
-                unityInputAction.action.performed -= OnPerformed;
-                unityInputAction.action.canceled -= OnCanceled;
             }
         }
     }
