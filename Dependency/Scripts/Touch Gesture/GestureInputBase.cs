@@ -49,26 +49,49 @@ namespace RAXY.InputSystem
             }
         }
 
+        [TitleGroup("Debug")]
+        [SerializeField]
         float _pinchNewDist;
+
+        [TitleGroup("Debug")]
+        [SerializeField]
         float _pinchDistanceDelta;
+
+        [TitleGroup("Debug")]
+        [SerializeField]
         float _pinchLastDistance;
 
         [TitleGroup("Pinch")]
         [ShowInInspector, ReadOnly]
-        public float PinchDelta
+        public float PinchDelta { get; protected set; }
+
+        void HandlePinchDelta()
         {
-            get
+            if (IsPinching == false || _activeTouches.Count < 2)
             {
-                if (IsPinching == false || _activeTouches.Count < 2)
-                    return 0;
-
-                var touches = _activeTouches.Values.Take(2).ToArray();
-                _pinchNewDist = Vector2.Distance(touches[0].CurrentPos, touches[1].CurrentPos);
-                _pinchDistanceDelta = _pinchLastDistance - _pinchNewDist;
-                _pinchLastDistance = _pinchNewDist * pinchSensitivity * (invertPinch ? 1 : -1);
-
-                return _pinchDistanceDelta;
+                PinchDelta = 0;
+                return;
             }
+
+            var touches = _activeTouches.Values.Take(2).ToArray();
+            float currentDist = Vector2.Distance(touches[0].CurrentPos, touches[1].CurrentPos);
+
+            // If this is the FIRST frame of pinching, initialize the last distance
+            if (_pinchLastDistance == 0)
+            {
+                _pinchLastDistance = currentDist;
+                PinchDelta = 0;
+                return;
+            }
+
+            _pinchNewDist = currentDist;
+            _pinchDistanceDelta = _pinchLastDistance - _pinchNewDist;
+            _pinchLastDistance = _pinchNewDist;
+
+            float final = _pinchDistanceDelta * pinchSensitivity * (invertPinch ? 1 : -1);
+            Debug.LogWarning($"{_pinchNewDist} - {_pinchDistanceDelta} - {_pinchLastDistance} - {final}");
+
+            PinchDelta = final;
         }
 
         public Vector2 PinchDeltaVector2 => new Vector2(0, PinchDelta);
@@ -131,12 +154,24 @@ namespace RAXY.InputSystem
 
                 _isPinching = value;
 
-                // if (_isPinching && _activeTouches.Count >= 2)
-                // {
-                //     var touches = _activeTouches.Values.Take(2).ToArray();
-                //     _pinchLastDistance = Vector2.Distance(touches[0].CurrentPos, touches[1].CurrentPos);
-                // }
+                if (_isPinching)
+                {
+                    var touches = _activeTouches.Values.Take(2).ToArray();
+                    _pinchLastDistance  = Vector2.Distance(touches[0].CurrentPos, touches[1].CurrentPos);
+                }
             }
+        }
+
+        protected virtual void OnEnable()
+        {
+            _activeTouches?.Clear();
+            _ignoredTouches?.Clear();
+        }
+
+        protected virtual void OnDisable()
+        {
+            _activeTouches?.Clear();
+            _ignoredTouches?.Clear();
         }
 
         protected virtual void Update()
@@ -151,10 +186,16 @@ namespace RAXY.InputSystem
             {
                 swipeEvent.Raise(SWIPE, SwipeDelta);
             }
-            
-            if (IsPinching)
+            else if (IsPinching)
             {
-                pinchEvent.Raise(PINCH, PinchDeltaVector2);
+                HandlePinchDelta();
+
+                if (PinchDelta != 0)
+                    pinchEvent.Raise(PINCH, PinchDeltaVector2);
+            }
+            else
+            {
+                pinchEvent.ResetParam();
             }
         }
 
@@ -243,8 +284,8 @@ namespace RAXY.InputSystem
             GUILayout.Label("Touch States", titleStyle);
 
             GUILayout.Label($"No Touch: {_noTouch}", labelStyle);
-            GUILayout.Label($"Is Panning: {_isSwiping}", labelStyle);
-            GUILayout.Label($"Is Zooming: {_isPinching}", labelStyle);
+            GUILayout.Label($"Is Swiping: {_isSwiping}", labelStyle);
+            GUILayout.Label($"Is Pinching: {_isPinching}", labelStyle);
 
             GUILayout.EndVertical();
             GUILayout.EndArea();

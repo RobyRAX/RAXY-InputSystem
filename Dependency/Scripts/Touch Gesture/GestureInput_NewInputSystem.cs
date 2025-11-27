@@ -9,13 +9,15 @@ namespace RAXY.InputSystem
 {
     public class GestureInput_NewInputSystem : GestureInputBase
     {
-        void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             EnhancedTouch.EnhancedTouchSupport.Enable();
         }
 
-        void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
             EnhancedTouch.EnhancedTouchSupport.Disable();
         }
 
