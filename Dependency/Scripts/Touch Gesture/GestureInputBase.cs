@@ -120,8 +120,8 @@ namespace RAXY.InputSystem
                 if (_noTouch)
                 {
                     OnNoTouch?.Invoke();
-                    swipeEvent.Raise(SWIPE, Vector2.zero);
-                    pinchEvent.Raise(PINCH, Vector2.zero);
+                    swipeEvent?.Raise(SWIPE, Vector2.zero);
+                    pinchEvent?.Raise(PINCH, Vector2.zero);
                 }
             }
         }
@@ -184,18 +184,14 @@ namespace RAXY.InputSystem
 
             if (IsSwiping)
             {
-                swipeEvent.Raise(SWIPE, SwipeDelta);
+                swipeEvent?.Raise(SWIPE, SwipeDelta);
             }
             else if (IsPinching)
             {
                 HandlePinchDelta();
 
                 if (PinchDelta != 0)
-                    pinchEvent.Raise(PINCH, PinchDeltaVector2);
-            }
-            else
-            {
-                pinchEvent.ResetParam();
+                    pinchEvent?.Raise(PINCH, PinchDeltaVector2);
             }
         }
 
