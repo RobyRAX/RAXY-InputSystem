@@ -71,7 +71,7 @@ namespace RAXY.InputSystem
             Cursor.lockState = CursorLockMode.Locked;
 #else
             Cursor.lockState = CursorLockMode.None;
-            detectMouseInput = false;
+            isDetectMouseInput = false;
 #endif
 
             isDetectKeyboardInput = true;
