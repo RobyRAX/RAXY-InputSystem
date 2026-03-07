@@ -199,8 +199,15 @@ namespace RAXY.InputSystem
         protected abstract bool IsTouchOverUI(Vector2 touchPos);
 
 #if UNITY_EDITOR
+        [TitleGroup("Debug")]
+        [SerializeField]
+        bool enableTouchDebug = true;
+
         public void OnGUI()
         {
+            if (!enableTouchDebug)
+                return;
+
             GUIStyle titleStyle = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 18,
