@@ -4,6 +4,11 @@
   "displayName": "RAXY Input System",
   "author": {
     "name": "RobyRAX"
+  },
+  "dependencies": {
+    "com.raxy.event": "1.0.0",
+    "com.raxy.utility": "1.0.0",
+    "com.unity.inputsystem": "1.19.0"
   }
 }
 
