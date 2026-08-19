@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -41,6 +42,8 @@ namespace RAXY.InputSystem
             }
         }
         
+        [TitleGroup("Debug")]
+        [Button]
         void Trigger_ValueChanged(Vector2 value)
         {
             foreach (var actionEvent in inputActionEvents)
