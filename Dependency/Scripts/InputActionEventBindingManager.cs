@@ -14,6 +14,8 @@ namespace RAXY.InputSystem
 {
     public class InputActionEventBindingManager : Singleton<InputActionEventBindingManager>
     {
+        public bool bindOnAwake = true;
+
         [TitleGroup("Bindings")]
         [TableList]
         public List<InputActionEventBinding> InputActionBindings;
@@ -21,7 +23,9 @@ namespace RAXY.InputSystem
         protected override void Awake()
         {
             base.Awake();
-            Bind();
+
+            if (bindOnAwake)
+                Bind();
         }
 
         protected override void OnDestroy()
