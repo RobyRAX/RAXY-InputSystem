@@ -8,11 +8,42 @@ namespace RAXY.InputSystem
 {
     [CreateAssetMenu(menuName = "RAXY/Input System/Input Action Event")]
     public class InputActionEventSO : EventSO<InputContext>
-    {
-        public void Raise(string actionName, bool value) => Raise(new InputContext(actionName, value));
-        public void Raise(string actionName, Vector2 value) => Raise(new InputContext(actionName, value));
-        public void Raise(bool value) => Raise(new InputContext(value));
-        public void Raise(Vector2 value) => Raise(new InputContext(value));
+    {   
+        [TitleGroup("Status")]
+        [ShowInInspector]
+        public bool IsRaisable { get; set; } = true;
+
+        public void Raise(string actionName, bool value)
+        {
+            if (IsRaisable == false)
+                return;
+
+            Raise(new InputContext(actionName, value));
+        }
+
+        public void Raise(string actionName, Vector2 value)
+        {
+            if (IsRaisable == false)
+                return;
+
+            Raise(new InputContext(actionName, value));
+        }
+
+        public void Raise(bool value)
+        {
+            if (IsRaisable == false)
+                return;
+
+            Raise(new InputContext(value));
+        }
+
+        public void Raise(Vector2 value)
+        {
+            if (IsRaisable == false)
+                return;
+
+            Raise(new InputContext(value));
+        }
     }
 
     [Serializable]

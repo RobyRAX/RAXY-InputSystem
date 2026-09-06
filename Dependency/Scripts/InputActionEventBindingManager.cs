@@ -53,6 +53,11 @@ namespace RAXY.InputSystem
                 inputEntry.Unbind();
             }
         }
+
+        public void SetRaisable(InputActionEventSO actionSO, bool raisable)
+        {
+            actionSO.IsRaisable = raisable;
+        }
     }
 
     [Serializable]
