@@ -13,3 +13,26 @@ This package uses the **[Joystick Pack](https://assetstore.unity.com/packages/to
 - Clean separation between input detection and gameplay logic
 - Built-in virtual joystick support via Joystick Pack
 
+## Samples
+
+Import **Basic Setup** from Package Manager → RAXY Input System → Samples.
+
+After import it lands at:
+
+`Assets/Samples/RAXY Input System/1.1.0/Basic Setup/`
+
+Contents:
+
+- **Move / Jump / Interact / Show Cursor** `InputActionEventSO` assets
+- **Sample Input Manager** prefab — `InputActionEventBindingManager` (action refs left empty), `CursorManager`, and `SampleInputDebugListener`
+- **Sample On-Screen Controls** prefab — EventSystem + Canvas with joystick + Jump/Interact button raisers
+
+### Quick verify
+
+1. Drop **Sample Input Manager** and **Sample On-Screen Controls** into a scene.
+2. Enter Play Mode.
+3. Drag the on-screen joystick and press Jump / Interact — Console should log events from `SampleInputDebugListener`.
+
+### Optional: Unity Input Actions
+
+Assign your project's `InputActionReference`s to the BindingManager rows on **Sample Input Manager**. Keyboard/gamepad will raise the same event SOs as the on-screen controls.

@@ -1,6 +1,6 @@
 {
   "name": "com.raxy.inputsystem",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "RAXY Input System",
   "author": {
     "name": "RobyRAX"
@@ -9,6 +9,12 @@
     "com.raxy.event": "1.0.0",
     "com.raxy.utility": "1.0.0",
     "com.unity.inputsystem": "1.19.0"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Basic Setup",
+      "description": "Sample Input Manager (BindingManager, CursorManager, debug listener), event SOs, and on-screen joystick/button raisers.",
+      "path": "Samples~/Basic Setup"
+    }
+  ]
 }
-

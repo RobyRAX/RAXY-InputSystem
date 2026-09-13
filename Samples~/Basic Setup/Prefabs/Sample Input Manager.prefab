@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2050893280339350421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750327652886780859}
+  - component: {fileID: 8234601478927879116}
+  - component: {fileID: 6147812638952458199}
+  - component: {fileID: 113808862322558491}
+  m_Layer: 0
+  m_Name: Sample Input Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750327652886780859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050893280339350421}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8234601478927879116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050893280339350421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919fcfff42383ef419fbf701afc30bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SampleInputDebugListener
+  events:
+  - {fileID: 11400000, guid: 22a6a3cfaf1ad9e49a8fbcc4b594d037, type: 2}
+  - {fileID: 11400000, guid: 6b4a6d0abdfbc9944930b006db65f61f, type: 2}
+  - {fileID: 11400000, guid: f84e918cda8356e429172a6f7ae9a7cf, type: 2}
+--- !u!114 &6147812638952458199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050893280339350421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f7cd1fe920ee4ca437015254bc32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RAXY.InputSystem::RAXY.InputSystem.InputActionEventBindingManager
+  bindOnAwake: 1
+  InputActionBindings:
+  - unityInputAction: {fileID: 0}
+    actionEventSO: {fileID: 11400000, guid: 22a6a3cfaf1ad9e49a8fbcc4b594d037, type: 2}
+  - unityInputAction: {fileID: 0}
+    actionEventSO: {fileID: 11400000, guid: 6b4a6d0abdfbc9944930b006db65f61f, type: 2}
+  - unityInputAction: {fileID: 0}
+    actionEventSO: {fileID: 11400000, guid: f84e918cda8356e429172a6f7ae9a7cf, type: 2}
+  - unityInputAction: {fileID: 0}
+    actionEventSO: {fileID: 11400000, guid: 53a9b7e7028c8eb46a20c3566de13d86, type: 2}
+--- !u!114 &113808862322558491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050893280339350421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b264b9eb8852e964f946e011f3c9f426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RAXY.InputSystem::RAXY.InputSystem.CursorManager
+  showCursorEvent: {fileID: 11400000, guid: 53a9b7e7028c8eb46a20c3566de13d86, type: 2}
+  forceShow: 0
+  isShowCursor: 0
+  isDetectMouseInput: 0
+  isDetectKeyboardInput: 0
