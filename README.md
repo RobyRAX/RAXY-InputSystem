@@ -19,7 +19,7 @@ Import **Basic Setup** from Package Manager → RAXY Input System → Samples.
 
 After import it lands at:
 
-`Assets/Samples/RAXY Input System/1.1.1/Basic Setup/`
+`Assets/Samples/RAXY Input System/1.1.2/Basic Setup/`
 
 Contents:
 

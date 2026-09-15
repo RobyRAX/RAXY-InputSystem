@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.2]
+
+- Fixed Joystick Pack sample PNG import settings: **Sprite (2D and UI)** with alpha transparency (was Default Texture).
+
 ## [1.1.1]
 
 - Moved Joystick Pack **prefabs and sprites** into the **Basic Setup** sample; added third-party attribution README with Asset Store link.
