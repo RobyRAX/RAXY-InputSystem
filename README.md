@@ -4,14 +4,14 @@ RAXY Input System provides a flexible touch gesture module and an event-driven w
 
 It is designed to unify and streamline both touch and keyboard inputs, allowing you to switch or expand input methods without modifying your core gameplay logic.
 
-This package uses the **[Joystick Pack](https://assetstore.unity.com/packages/tools/input-management/joystick-pack-107631)** for virtual joystick support, and the asset is already included inside the package.
+Virtual on-screen joystick support is provided through **`JoystickInputActionRaiser`** and integrates with **[Joystick Pack](https://assetstore.unity.com/packages/tools/input-management/joystick-pack-107631)**. Joystick Pack **prefabs and sprites** ship with the **Basic Setup** sample (import from Package Manager); runtime Joystick scripts remain in the package core.
 
 ## Features
 - Touch gesture recognition (tap, swipe, pinch)
 - Centralized event-based input handling
 - Easy expansion using the `Raiser` class
 - Clean separation between input detection and gameplay logic
-- Built-in virtual joystick support via Joystick Pack
+- On-screen joystick integration via `JoystickInputActionRaiser` (see **Basic Setup** sample)
 
 ## Samples
 
@@ -19,13 +19,14 @@ Import **Basic Setup** from Package Manager → RAXY Input System → Samples.
 
 After import it lands at:
 
-`Assets/Samples/RAXY Input System/1.1.0/Basic Setup/`
+`Assets/Samples/RAXY Input System/1.1.1/Basic Setup/`
 
 Contents:
 
 - **Move / Jump / Interact / Show Cursor** `InputActionEventSO` assets
 - **Sample Input Manager** prefab — `InputActionEventBindingManager` (action refs left empty), `CursorManager`, and `SampleInputDebugListener`
 - **Sample On-Screen Controls** prefab — EventSystem + Canvas with joystick + Jump/Interact button raisers
+- **Joystick Pack** prefabs and sprites (third-party Asset Store assets) — see `Joystick Pack/README.md` in the imported sample folder
 
 ### Quick verify
 

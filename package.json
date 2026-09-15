@@ -1,6 +1,6 @@
 {
   "name": "com.raxy.inputsystem",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "displayName": "RAXY Input System",
   "author": {
     "name": "RobyRAX"
@@ -13,7 +13,7 @@
   "samples": [
     {
       "displayName": "Basic Setup",
-      "description": "Sample Input Manager (BindingManager, CursorManager, debug listener), event SOs, and on-screen joystick/button raisers.",
+      "description": "Sample Input Manager, event SOs, on-screen joystick/button raisers, and Joystick Pack prefabs/sprites (Asset Store third-party assets). Import this sample to use the demo UI.",
       "path": "Samples~/Basic Setup"
     }
   ]
